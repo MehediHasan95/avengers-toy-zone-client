@@ -1,6 +1,7 @@
 import { faSignIn } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NavLink } from "react-router-dom";
+import logo from "../../assets/logo.svg";
 
 const Navbar = () => {
   const active = "px-3 text-blueViolet font-bold";
@@ -88,7 +89,11 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
-          <h1 className="font-lobster text-2xl">AvengersToyZone</h1>
+          <img src={logo} alt="logo" className="w-10" />
+          <h1 className="font-lobster text-2xl">
+            <span className="text-russianViolet">Avengers</span>
+            <span className="text-blueViolet">ToyZone</span>
+          </h1>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu-horizontal">
