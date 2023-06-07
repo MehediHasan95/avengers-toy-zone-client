@@ -22,6 +22,8 @@ const Navbar = () => {
       .catch((err) => console.log(err));
   };
 
+  console.log(user);
+
   return (
     <div>
       <div className="navbar max-w-8xl mx-auto">
