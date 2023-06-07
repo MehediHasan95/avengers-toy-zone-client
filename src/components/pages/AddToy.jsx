@@ -1,5 +1,6 @@
 import moment from "moment/moment";
 import { useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
 
 const AddToy = () => {
   const create = moment().format("DD/MM/YYYY, HH:mm:ss");
@@ -10,28 +11,36 @@ const AddToy = () => {
   const category = [
     {
       name: "Iron Man Toys",
-      sub: [{ name: "Mini Iron Man Toys" }, { name: "Large Iron Man Toys" }],
+      sub: [
+        { name: "Iron Man 1 Toys" },
+        { name: "Iron Man 2 Toys" },
+        { name: "Iron Man 3 Toys" },
+      ],
     },
     {
       name: "Captain America Toys",
+      sub: [
+        { name: "The First Avenger Toys" },
+        { name: "The Winter Soldier Toys" },
+        { name: "Civil War Toys" },
+      ],
     },
-    {
-      name: "Black Panther Toys",
-    },
+
     {
       name: "Spiderman Toys",
+      sub: [
+        { name: "Across the Spider-Verse Toys" },
+        { name: "No Way Home Toys" },
+        { name: "Homecoming Toys" },
+      ],
     },
     {
       name: "Hulk Toys",
-    },
-    {
-      name: "Thanos Toys",
-    },
-    {
-      name: "Thor Toys",
-    },
-    {
-      name: "Hawkeye Toys",
+      sub: [
+        { name: "The Incredible Hulk Toys" },
+        { name: "Age of Ultron Toys" },
+        { name: "Endgame  Toys" },
+      ],
     },
   ];
 
@@ -49,7 +58,7 @@ const AddToy = () => {
     const sellerEmail = e?.target?.sellerEmail?.value;
     const category = e?.target?.category?.value;
     const subCategory = e?.target?.subCategory?.value;
-    const manufacturer = e?.target?.manufacturer?.value;
+    const brand = e?.target?.brand?.value;
     const description = e?.target?.description?.value;
 
     const data = {
@@ -63,10 +72,27 @@ const AddToy = () => {
       sellerEmail,
       category,
       subCategory,
-      manufacturer,
+      brand,
       description,
     };
-    console.log(data);
+
+    fetch("http://localhost:5000/alltoys", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+        if (res.acknowledged) {
+          toast.success("Your toy add successful");
+          setSubCategory([]);
+          e.target.reset();
+        }
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -81,14 +107,14 @@ const AddToy = () => {
               type="text"
               name="name"
               className="w-49 p-3 mb-3 rounded-lg border focus:outline-blueViolet"
-              placeholder="Name"
+              placeholder="Toy name"
               required
             />
             <input
               type="text"
               name="price"
               className="w-49 p-3 mb-3 rounded-lg border focus:outline-blueViolet"
-              placeholder="Price"
+              placeholder="Toy price"
               required
             />
           </div>
@@ -132,9 +158,10 @@ const AddToy = () => {
               onChange={(e) => setSelectCategory(e.target.value)}
               name="category"
               className="w-49 p-3 mb-3 rounded-lg border focus:outline-blueViolet"
+              required
             >
-              <option value={null} selected disabled>
-                Please select any category
+              <option defaultValue={null} selected disabled>
+                -- --
               </option>
               {category.map((e, index) => (
                 <option value={e.name} key={index}>
@@ -146,9 +173,10 @@ const AddToy = () => {
             <select
               name="subCategory"
               className="w-49 p-3 mb-3 rounded-lg border focus:outline-blueViolet"
+              required
             >
-              <option value={null} selected disabled>
-                Please select sub-category
+              <option defaultValue={null} selected disabled>
+                -- --
               </option>
               {subCategory.map((e, index) => (
                 <option value={e.name} key={index}>
@@ -160,9 +188,9 @@ const AddToy = () => {
 
           <input
             type="text"
-            name="manufacturer"
+            name="brand"
             className="w-full p-3 mb-3 rounded-lg border focus:outline-blueViolet"
-            placeholder="Manufacturer"
+            placeholder="Brand"
             required
           />
 
@@ -170,7 +198,8 @@ const AddToy = () => {
             name="description"
             rows="5"
             className="w-full p-3 mb-3 rounded-lg border focus:outline-blueViolet"
-            placeholder="Descriptions..."
+            placeholder="Descriptions"
+            required
           ></textarea>
           <button className="w-full p-3 rounded-lg bg-blueViolet text-white">
             Submit

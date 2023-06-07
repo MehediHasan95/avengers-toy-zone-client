@@ -17,7 +17,26 @@ const Category = () => {
 
           <TabPanel>
             <h2>Any content 1</h2>
+
+            <Tabs>
+              <TabList>
+                <Tab>Marvel Legends Series 6</Tab>
+                <Tab>Marvel Legends Series 7</Tab>
+                <Tab>Marvel Legends Series 8</Tab>
+              </TabList>
+
+              <TabPanel>
+                <h2>Any content 5</h2>
+              </TabPanel>
+              <TabPanel>
+                <h2>Any content 6</h2>
+              </TabPanel>
+              <TabPanel>
+                <h2>Any content 7</h2>
+              </TabPanel>
+            </Tabs>
           </TabPanel>
+
           <TabPanel>
             <h2>Any content 2</h2>
           </TabPanel>
