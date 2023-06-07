@@ -1,11 +1,17 @@
+import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const Authentication = () => {
   const [toggle, setToggle] = useState(false);
   const [showPass, setShowPass] = useState(false);
+  const [loader, setLoader] = useState(false);
   const [message, setMessage] = useState("");
+
+  const { userSignUp, userProfileUpdate, userSignIn, signInWithGoogle } =
+    useContext(AuthContext);
 
   const handleAuthentication = (e) => {
     e.preventDefault();
@@ -13,7 +19,24 @@ const Authentication = () => {
     const email = e?.target?.email?.value;
     const password = e?.target?.password?.value;
     const photoURL = e?.target?.photoURL?.value;
-    console.log(displayName, email, password, photoURL);
+
+    if (displayName && photoURL) {
+      userSignUp(email, password)
+        .then(() => {
+          userProfileUpdate(displayName, photoURL);
+        })
+        .catch((err) => {
+          setMessage(err);
+        });
+    } else {
+      console.log("login");
+    }
+  };
+
+  const handleGoogleSignIn = () => {
+    signInWithGoogle()
+      .then(() => {})
+      .catch((err) => setMessage(err.code));
   };
 
   return (
@@ -79,6 +102,12 @@ const Authentication = () => {
             {toggle ? "SignIn" : "Register"}
           </button>
         </p>
+
+        <div>
+          <button onClick={handleGoogleSignIn} className="w-full p-3">
+            <FontAwesomeIcon icon={faGoogle} /> Google
+          </button>
+        </div>
       </div>
     </div>
   );

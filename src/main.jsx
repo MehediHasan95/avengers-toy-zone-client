@@ -8,9 +8,12 @@ import "aos/dist/aos.css";
 AOS.init();
 
 import "react-tabs/style/react-tabs.css";
+import AuthProvider from "./provider/AuthProvider.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <App />
+    <AuthProvider>
+      <App />
+    </AuthProvider>
   </React.StrictMode>
 );

@@ -1,11 +1,24 @@
-import { faSignIn } from "@fortawesome/free-solid-svg-icons";
+import {
+  faRightFromBracket,
+  faRightToBracket,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/logo.svg";
+import { useContext } from "react";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const Navbar = () => {
+  const { user, userSignOut } = useContext(AuthContext);
+
   const active = "px-3 text-blueViolet underline font-bold";
   const inActive = "px-3";
+
+  const handleSignOut = () => {
+    userSignOut()
+      .then(() => {})
+      .catch((err) => console.log(err));
+  };
 
   return (
     <div>
@@ -113,21 +126,25 @@ const Navbar = () => {
               </NavLink>
             </li>
 
-            <li>
-              <NavLink to="/mytoys">
-                {({ isActive }) => (
-                  <p className={isActive ? active : inActive}>My Toys</p>
-                )}
-              </NavLink>
-            </li>
+            {user && (
+              <li>
+                <NavLink to="/mytoys">
+                  {({ isActive }) => (
+                    <p className={isActive ? active : inActive}>My Toys</p>
+                  )}
+                </NavLink>
+              </li>
+            )}
 
-            <li>
-              <NavLink to="/addtoy">
-                {({ isActive }) => (
-                  <p className={isActive ? active : inActive}>Add Toy</p>
-                )}
-              </NavLink>
-            </li>
+            {user && (
+              <li>
+                <NavLink to="/addtoy">
+                  {({ isActive }) => (
+                    <p className={isActive ? active : inActive}>Add Toy</p>
+                  )}
+                </NavLink>
+              </li>
+            )}
 
             <li>
               <NavLink to="/blog">
@@ -144,22 +161,39 @@ const Navbar = () => {
                 )}
               </NavLink>
             </li>
-
-            <li>
-              <NavLink to="/blog">
-                {({ isActive }) => (
-                  <p className={isActive ? active : inActive}>Contact</p>
-                )}
-              </NavLink>
-            </li>
           </ul>
         </div>
         <div className="navbar-end">
-          <Link to="/authentication">
-            <button>
-              Sign In <FontAwesomeIcon icon={faSignIn} />
-            </button>
-          </Link>
+          {user ? (
+            <div className="flex items-center">
+              <div
+                className="avatar pe-5 tooltip tooltip-bottom tooltip-primary"
+                data-tip={user && user?.displayName}
+              >
+                <div className="w-10 rounded-full">
+                  <img
+                    src={user && user?.photoURL}
+                    alt={user && user?.displayName}
+                  />
+                </div>
+              </div>
+              <button onClick={handleSignOut} title="Sign Out">
+                <FontAwesomeIcon
+                  icon={faRightFromBracket}
+                  className="text-russianViolet hover:text-red-400"
+                />
+              </button>
+            </div>
+          ) : (
+            <Link to="/authentication">
+              <button title="Sign In">
+                <FontAwesomeIcon
+                  icon={faRightToBracket}
+                  className="text-russianViolet"
+                />
+              </button>
+            </Link>
+          )}
         </div>
       </div>
     </div>

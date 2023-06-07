@@ -9,5 +9,6 @@ const app = initializeApp({
   messagingSenderId: import.meta.env.VITE_APP_messagingSenderId,
   appId: import.meta.env.VITE_APP_appId,
 });
+
 const auth = getAuth(app);
 export default auth;
