@@ -30,8 +30,8 @@ const Authentication = () => {
         .then(() => {
           userProfileUpdate(displayName, photoURL)
             .then(() => {
-              navigate(from, { replace: true });
               setLoader(false);
+              navigate(from, { replace: true });
             })
             .catch((err) => {
               setMessage(err.code);
@@ -57,7 +57,9 @@ const Authentication = () => {
 
   const handleGoogleSignIn = () => {
     signInWithGoogle()
-      .then(() => {})
+      .then(() => {
+        navigate(from, { replace: true });
+      })
       .catch((err) => setMessage(err.code));
   };
 

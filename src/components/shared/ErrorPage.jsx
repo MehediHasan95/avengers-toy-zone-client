@@ -1,7 +1,7 @@
 import { useLocation, useNavigate, useRouteError } from "react-router-dom";
 import errPic from "../../assets/error.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBackward } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 const ErrorPage = () => {
   const error = useRouteError();
@@ -18,9 +18,9 @@ const ErrorPage = () => {
         <p>{error.statusText || error.message}</p>
         <button
           onClick={() => navigate(from, { replace: true })}
-          className="w-2/5 p-1 rounded-lg my-3 bg-blueViolet text-white"
+          className="absolute top-5 left-5 w-10 h-10 rounded-full bg-blueViolet text-white"
         >
-          <FontAwesomeIcon icon={faBackward} /> Go Back
+          <FontAwesomeIcon icon={faArrowLeft} />
         </button>
       </div>
     </div>

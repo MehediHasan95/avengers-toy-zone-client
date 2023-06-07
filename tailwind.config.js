@@ -20,6 +20,9 @@ export default {
       maxWidth: {
         "8xl": "85rem",
       },
+      width: {
+        49: "49%",
+      },
     },
   },
   plugins: [require("daisyui")],
