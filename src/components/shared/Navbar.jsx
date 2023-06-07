@@ -11,6 +11,8 @@ import { AuthContext } from "../../provider/AuthProvider";
 const Navbar = () => {
   const { user, userSignOut } = useContext(AuthContext);
 
+  console.log(user);
+
   const active = "px-3 text-blueViolet underline font-bold";
   const inActive = "px-3";
 
