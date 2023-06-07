@@ -6,7 +6,7 @@ const Banner = () => {
       <div className="col-span-1 flex items-center">
         <div className="text-center  lg:text-left">
           <h1 className="text-4xl lg:text-8xl font-bold">
-            I STILL BELIEVE IN
+            WE STILL BELIEVE IN
             <span className="text-blueViolet">
               {" "}
               <Typewriter

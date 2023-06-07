@@ -1,15 +1,15 @@
 import { faSignIn } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/logo.svg";
 
 const Navbar = () => {
-  const active = "px-3 text-blueViolet font-bold";
+  const active = "px-3 text-blueViolet underline font-bold";
   const inActive = "px-3";
 
   return (
     <div>
-      <div className="navbar bg-base-100 max-w-8xl mx-auto">
+      <div className="navbar max-w-8xl mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -30,7 +30,7 @@ const Navbar = () => {
             </label>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+              className="menu menu-sm dropdown-content text-russianViolet mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
                 <NavLink to="/">
@@ -96,7 +96,7 @@ const Navbar = () => {
           </h1>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu-horizontal">
+          <ul className="menu-horizontal text-russianViolet">
             <li>
               <NavLink to="/">
                 {({ isActive }) => (
@@ -155,9 +155,11 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <button>
-            Sign In <FontAwesomeIcon icon={faSignIn} />
-          </button>
+          <Link to="/authentication">
+            <button>
+              Sign In <FontAwesomeIcon icon={faSignIn} />
+            </button>
+          </Link>
         </div>
       </div>
     </div>

@@ -27,7 +27,7 @@ const Gallery = () => {
         {data.map((e, index) => (
           <div
             key={index}
-            className="text-center shadow-xl rounded-lg border-b-8 border-blueViolet "
+            className="text-center shadow-xl rounded-lg border-b-8 border-blueViolet bg-base-100"
             data-aos="zoom-in"
             data-aos-duration="3000"
           >
