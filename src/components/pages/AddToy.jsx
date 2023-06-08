@@ -2,9 +2,11 @@ import moment from "moment/moment";
 import { useContext, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { AuthContext } from "../../provider/AuthProvider";
+import UseTitle from "../../hooks/useTitle";
 
 const AddToy = () => {
   const { user } = useContext(AuthContext);
+  UseTitle("Add Toy");
   const create = moment().format("DD/MM/YYYY, HH:mm:ss");
   const rating = () => parseFloat(Math.random() * 5).toFixed(2);
   const [selectCategory, setSelectCategory] = useState("");
@@ -19,7 +21,6 @@ const AddToy = () => {
         { name: "Iron Man 3 Toys" },
       ],
     },
-
     {
       name: "Captain America Toys",
       sub: [
@@ -28,7 +29,6 @@ const AddToy = () => {
         { name: "Civil War Toys" },
       ],
     },
-
     {
       name: "Spiderman Toys",
       sub: [

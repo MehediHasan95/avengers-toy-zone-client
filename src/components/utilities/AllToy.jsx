@@ -13,7 +13,7 @@ const AllToy = ({ toy }) => {
         <td>{quantity}</td>
         <td>
           <Link to={`/toydetails/${_id}`}>
-            <button className="text-blueViolet hover:font-bold">Details</button>
+            <button className="text-blueViolet hover:underline">Details</button>
           </Link>
         </td>
       </tr>

@@ -12,12 +12,12 @@ const AllToys = () => {
       <table className="w-full table rounded-none text-center bg-base-100">
         <thead className="bg-blueViolet text-white">
           <tr>
-            <th>Seller name</th>
-            <th>Toy name</th>
-            <th>Sub-category</th>
+            <th>Seller Name</th>
+            <th>Toy Name</th>
+            <th>Sub Category</th>
             <th>Price</th>
-            <th>Available Quantity</th>
-            <th>View Details</th>
+            <th>Quantity</th>
+            <th>Action</th>
           </tr>
         </thead>
         {alltoys.map((e) => (
