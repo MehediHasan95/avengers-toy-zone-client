@@ -9,6 +9,7 @@ const MyToys = () => {
   const { user } = useContext(AuthContext);
   UseTitle("My Toys");
   const [myToys, setMyToys] = useState([]);
+  const [updateToys, setUpdateToys] = useState({});
 
   useEffect(() => {
     fetch(`http://localhost:5000/mytoys?uid=${user?.uid}`)
@@ -40,6 +41,14 @@ const MyToys = () => {
     });
   };
 
+  const handleUpdateMyToys = (_id) => {
+    fetch(`http://localhost:5000/mytoys/${_id}`, {})
+      .then((res) => res.json())
+      .then((res) => {
+        setUpdateToys(res);
+      });
+  };
+
   return (
     <div className="px-2 lg:px-0 max-w-8xl mx-auto my-10">
       {myToys.length > 0 ? (
@@ -55,7 +64,14 @@ const MyToys = () => {
             </tr>
           </thead>
           {myToys.map((e) => (
-            <MyToy key={e._id} toy={e} handleRemove={handleRemove} />
+            <MyToy
+              key={e._id}
+              toy={e}
+              handleRemove={handleRemove}
+              handleUpdateMyToys={handleUpdateMyToys}
+              updateToys={updateToys}
+              setUpdateToys={setUpdateToys}
+            />
           ))}
         </table>
       ) : (

@@ -1,8 +1,9 @@
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { toast } from "react-hot-toast";
 
-const EditToyModal = ({ toyInfo }) => {
-  const { name, price, quantity, description, img } = toyInfo;
+const EditToyModal = ({ toyInfo, setUpdateToys }) => {
+  const { _id, name, price, quantity, description, img } = toyInfo;
 
   const handleUpdateToyInformation = (e) => {
     e.preventDefault();
@@ -12,11 +13,24 @@ const EditToyModal = ({ toyInfo }) => {
     const img = e?.target?.img?.value;
     const description = e?.target?.description?.value;
     const date = { name, price, quantity, img, description };
-    console.log(date);
+
+    fetch(`http://localhost:5000/mytoys/${_id}`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(date),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.acknowledged) {
+          toast.success("Your toy update success");
+        }
+      });
   };
 
   return (
-    <div>
+    <>
       <input type="checkbox" id="toyedit" className="modal-toggle" />
       <div className="modal">
         <div method="dialog" className="modal-box w-2/5 max-w-5xl">
@@ -24,7 +38,7 @@ const EditToyModal = ({ toyInfo }) => {
             htmlFor="toyedit"
             className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
           >
-            <FontAwesomeIcon icon={faXmark} />
+            <FontAwesomeIcon icon={faXmark} onClick={() => setUpdateToys({})} />
           </label>
           <h3 className="text-center text-2xl">Please Edit Toy Information</h3>
           <div className="py-4">
@@ -103,7 +117,7 @@ const EditToyModal = ({ toyInfo }) => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
