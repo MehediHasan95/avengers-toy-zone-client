@@ -3,6 +3,11 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   daisyui: {
     themes: ["light"],
+    base: true,
+    styled: true,
+    utils: true,
+    rtl: false,
+    logs: true,
   },
   theme: {
     extend: {

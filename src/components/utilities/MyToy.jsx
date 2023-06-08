@@ -1,8 +1,10 @@
 import { faEdit, faEye, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import EditToyModal from "./EditToyModal";
 
 const MyToy = ({ toy, handleRemove }) => {
   const { _id, sellerName, name, price, subCategory, quantity } = toy;
+
   return (
     <tbody>
       <tr>
@@ -18,12 +20,13 @@ const MyToy = ({ toy, handleRemove }) => {
           >
             <FontAwesomeIcon icon={faEye} />
           </button>
-          <button
+          <label
+            htmlFor="toyedit"
             className="mx-3 cursor-pointer hover:text-amber-500 tooltip"
             data-tip="Edit"
           >
             <FontAwesomeIcon icon={faEdit} />
-          </button>
+          </label>
           <button
             onClick={() => handleRemove(_id)}
             className="mx-3 cursor-pointer hover:text-red-500 tooltip"
@@ -33,6 +36,7 @@ const MyToy = ({ toy, handleRemove }) => {
           </button>
         </td>
       </tr>
+      <EditToyModal toyInfo={toy} />
     </tbody>
   );
 };

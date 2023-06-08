@@ -1,8 +1,10 @@
 import { useLoaderData } from "react-router-dom";
 import AllToy from "../utilities/AllToy";
+import UseTitle from "../../hooks/useTitle";
 
 const AllToys = () => {
   const alltoys = useLoaderData();
+  UseTitle("All Toys");
 
   return (
     <div className="px-2 lg:px-0 max-w-8xl mx-auto my-10">
