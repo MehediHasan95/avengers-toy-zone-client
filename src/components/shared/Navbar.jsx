@@ -12,7 +12,7 @@ const Navbar = () => {
   const { user, userSignOut } = useContext(AuthContext);
 
   const active = "px-3 text-blueViolet font-bold";
-  const inActive = "px-3";
+  const inActive = "px-3 hover:text-blueViolet";
 
   const handleSignOut = () => {
     userSignOut()

@@ -14,7 +14,6 @@ const AllToys = () => {
           <tr>
             <th>Seller name</th>
             <th>Toy name</th>
-            <th>Category</th>
             <th>Sub-category</th>
             <th>Price</th>
             <th>Available Quantity</th>

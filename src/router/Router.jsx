@@ -6,6 +6,7 @@ import Authentication from "../components/auth/Authentication";
 import AddToy from "../components/pages/AddToy";
 import PrivateRouter from "./PrivateRouter";
 import ErrorPage from "../components/shared/ErrorPage";
+import ToyDetails from "../components/pages/ToyDetails";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,11 @@ const router = createBrowserRouter([
             <AddToy />
           </PrivateRouter>
         ),
+      },
+      {
+        path: "toydetails/:id",
+        element: <ToyDetails />,
+        loader: ({ params }) => fetch(`http://localhost:5000/toy/${params.id}`),
       },
       {
         path: "authentication",
