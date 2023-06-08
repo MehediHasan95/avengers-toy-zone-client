@@ -1,8 +1,10 @@
 import moment from "moment/moment";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const AddToy = () => {
+  const { user } = useContext(AuthContext);
   const create = moment().format("DD/MM/YYYY, HH:mm:ss");
   const rating = () => parseFloat(Math.random() * 5).toFixed(2);
   const [selectCategory, setSelectCategory] = useState("");
@@ -113,6 +115,7 @@ const AddToy = () => {
             <input
               type="text"
               name="price"
+              pattern="[0-9]{0,}"
               className="w-49 p-3 mb-3 rounded-lg border focus:outline-blueViolet"
               placeholder="Toy price"
               required
@@ -123,6 +126,7 @@ const AddToy = () => {
             <input
               type="text"
               name="quantity"
+              pattern="[0-9]{0,}"
               className="w-49 p-3 mb-3 rounded-lg border focus:outline-blueViolet"
               placeholder="Quantity"
               required
@@ -140,15 +144,21 @@ const AddToy = () => {
             <input
               type="text"
               name="sellerName"
+              defaultValue={user?.displayName}
               className="w-49 p-3 mb-3 rounded-lg border focus:outline-blueViolet"
               placeholder="Seller name"
               required
+              readOnly
+              disabled
             />
             <input
               type="text"
               name="sellerEmail"
+              defaultValue={user?.email}
               className="w-49 p-3 mb-3 rounded-lg border focus:outline-blueViolet"
               placeholder="Seller email"
+              readOnly
+              disabled
               required
             />
           </div>
@@ -189,6 +199,7 @@ const AddToy = () => {
           <input
             type="text"
             name="brand"
+            pattern="[a-z A-Z]{0,}"
             className="w-full p-3 mb-3 rounded-lg border focus:outline-blueViolet"
             placeholder="Brand"
             required
