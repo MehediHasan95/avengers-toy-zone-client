@@ -17,7 +17,7 @@ const ToyDetails = () => {
     rating,
     brand,
   } = toyDetails;
-  console.log(toyDetails);
+
   return (
     <div className="px-2 lg:px-0 max-w-8xl mx-auto my-10">
       <div className="grid lg:grid-cols-3 bg-base-100 rounded-lg">

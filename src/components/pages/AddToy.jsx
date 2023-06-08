@@ -19,6 +19,7 @@ const AddToy = () => {
         { name: "Iron Man 3 Toys" },
       ],
     },
+
     {
       name: "Captain America Toys",
       sub: [
@@ -64,6 +65,7 @@ const AddToy = () => {
     const description = e?.target?.description?.value;
 
     const data = {
+      uid: user.uid,
       create,
       name,
       price,
