@@ -9,7 +9,7 @@ const MyToys = () => {
   const { user } = useContext(AuthContext);
   UseTitle("My Toys");
   const [myToys, setMyToys] = useState([]);
-  const [updateToys, setUpdateToys] = useState({});
+  const [viewToys, setViewToys] = useState({});
 
   useEffect(() => {
     fetch(`http://localhost:5000/mytoys?uid=${user?.uid}`)
@@ -45,7 +45,7 @@ const MyToys = () => {
     fetch(`http://localhost:5000/mytoys/${_id}`, {})
       .then((res) => res.json())
       .then((res) => {
-        setUpdateToys(res);
+        setViewToys(res);
       });
   };
 
@@ -69,8 +69,8 @@ const MyToys = () => {
               toy={e}
               handleRemove={handleRemove}
               handleUpdateMyToys={handleUpdateMyToys}
-              updateToys={updateToys}
-              setUpdateToys={setUpdateToys}
+              viewToys={viewToys}
+              setViewToys={setViewToys}
             />
           ))}
         </table>

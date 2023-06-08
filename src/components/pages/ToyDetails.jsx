@@ -79,7 +79,6 @@ const ToyDetails = () => {
               </p>
             </div>
           </div>
-
           <p>
             <span className="font-semibold">About - </span>
             {description}

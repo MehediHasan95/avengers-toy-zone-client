@@ -2,8 +2,8 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { toast } from "react-hot-toast";
 
-const EditToyModal = ({ toyInfo, setUpdateToys }) => {
-  const { _id, name, price, quantity, description, img } = toyInfo;
+const EditToyModal = ({ viewToys, setViewToys }) => {
+  const { _id, name, price, quantity, description, img } = viewToys;
 
   const handleUpdateToyInformation = (e) => {
     e.preventDefault();
@@ -35,10 +35,11 @@ const EditToyModal = ({ toyInfo, setUpdateToys }) => {
       <div className="modal">
         <div method="dialog" className="modal-box w-2/5 max-w-5xl">
           <label
+            onClick={() => setViewToys({})}
             htmlFor="toyedit"
             className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
           >
-            <FontAwesomeIcon icon={faXmark} onClick={() => setUpdateToys({})} />
+            <FontAwesomeIcon icon={faXmark} />
           </label>
           <h3 className="text-center text-2xl">Please Edit Toy Information</h3>
           <div className="py-4">

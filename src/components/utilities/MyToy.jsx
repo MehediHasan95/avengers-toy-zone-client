@@ -1,13 +1,14 @@
 import { faEdit, faEye, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import EditToyModal from "./EditToyModal";
+import ToyDetailModal from "./ToyDetailModal";
 
 const MyToy = ({
   toy,
   handleRemove,
   handleUpdateMyToys,
-  updateToys,
-  setUpdateToys,
+  viewToys,
+  setViewToys,
 }) => {
   const { _id, sellerName, name, price, subCategory, quantity } = toy;
 
@@ -20,21 +21,21 @@ const MyToy = ({
         <td>${price}</td>
         <td>{quantity}</td>
         <td>
-          <button
+          <label
+            onClick={() => handleUpdateMyToys(_id)}
+            htmlFor="toydetail"
             className="mx-3 cursor-pointer hover:text-blueViolet tooltip"
-            data-tip="Details"
+            data-tip="Edit"
           >
             <FontAwesomeIcon icon={faEye} />
-          </button>
+          </label>
           <label
+            onClick={() => handleUpdateMyToys(_id)}
             htmlFor="toyedit"
             className="mx-3 cursor-pointer hover:text-amber-500 tooltip"
             data-tip="Edit"
           >
-            <FontAwesomeIcon
-              icon={faEdit}
-              onClick={() => handleUpdateMyToys(_id)}
-            />
+            <FontAwesomeIcon icon={faEdit} />
           </label>
           <button
             onClick={() => handleRemove(_id)}
@@ -45,7 +46,8 @@ const MyToy = ({
           </button>
         </td>
       </tr>
-      <EditToyModal toyInfo={updateToys} setUpdateToys={setUpdateToys} />
+      <EditToyModal viewToys={viewToys} setViewToys={setViewToys} />
+      <ToyDetailModal viewToys={viewToys} setViewToys={setViewToys} />
     </tbody>
   );
 };
