@@ -4,18 +4,29 @@ import notdata from "../../assets/nodata.svg";
 import MyToy from "../utilities/MyToy";
 import useTitle from "../../hooks/useTitle";
 import swal from "sweetalert";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 const MyToys = () => {
   const { user } = useContext(AuthContext);
   useTitle("My Toys");
   const [myToys, setMyToys] = useState([]);
   const [viewToys, setViewToys] = useState({});
+  const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
     fetch(`http://localhost:5000/mytoys?uid=${user?.uid}`)
       .then((res) => res.json())
-      .then((res) => setMyToys(res));
-  }, [user?.uid, viewToys]);
+      .then((res) => {
+        let results = [];
+        for (const elements of res) {
+          if (elements.name.toLowerCase().includes(searchText.toLowerCase())) {
+            results.push(elements);
+          }
+        }
+        setMyToys(results);
+      });
+  }, [searchText, user?.uid, viewToys]);
 
   const handleRemove = (_id) => {
     swal({
@@ -42,7 +53,7 @@ const MyToys = () => {
   };
 
   const handleUpdateMyToys = (_id) => {
-    fetch(`http://localhost:5000/mytoys/${_id}`, {})
+    fetch(`http://localhost:5000/mytoys/${_id}`)
       .then((res) => res.json())
       .then((res) => {
         setViewToys(res);
@@ -54,10 +65,23 @@ const MyToys = () => {
       <h1 className="text-center text-xl mb-5 uppercase bg-blueViolet py-10 text-white rounded-lg">
         My Toys List
       </h1>
+      <div className="w-full my-5 relative">
+        <input
+          onKeyUp={(e) => setSearchText(e.target.value)}
+          type="text"
+          className="w-full p-2 rounded-lg border-none outline-none"
+          placeholder="Search you toy"
+        />
+        <FontAwesomeIcon
+          icon={faSearch}
+          className="text-blueViolet absolute top-3 right-2 cursor-pointer"
+        />
+      </div>
       {myToys.length > 0 ? (
         <table className="w-full table table-xs lg:table-md rounded-none text-center bg-base-100">
           <thead className="bg-blueViolet text-white">
             <tr>
+              <th>SL</th>
               <th>Seller Name</th>
               <th>Toy Name</th>
               <th>Sub Category</th>
@@ -66,10 +90,11 @@ const MyToys = () => {
               <th>Action</th>
             </tr>
           </thead>
-          {myToys.map((e) => (
+          {myToys.map((e, index) => (
             <MyToy
               key={e._id}
               toy={e}
+              index={index}
               handleRemove={handleRemove}
               handleUpdateMyToys={handleUpdateMyToys}
               viewToys={viewToys}

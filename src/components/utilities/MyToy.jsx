@@ -5,6 +5,7 @@ import ToyDetailModal from "./ToyDetailModal";
 
 const MyToy = ({
   toy,
+  index,
   handleRemove,
   handleUpdateMyToys,
   viewToys,
@@ -15,6 +16,7 @@ const MyToy = ({
   return (
     <tbody>
       <tr className="hover:bg-[#f1e9fc] cursor-pointer">
+        <td>{index + 1}</td>
         <td>{sellerName}</td>
         <td>{name}</td>
         <td>{subCategory}</td>
