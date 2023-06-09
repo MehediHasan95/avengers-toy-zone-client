@@ -14,7 +14,7 @@ const MyToy = ({
 
   return (
     <tbody>
-      <tr>
+      <tr className="hover:bg-[#f1e9fc] cursor-pointer">
         <td>{sellerName}</td>
         <td>{name}</td>
         <td>{subCategory}</td>
@@ -24,7 +24,7 @@ const MyToy = ({
           <label
             onClick={() => handleUpdateMyToys(_id)}
             htmlFor="toydetail"
-            className="mx-3 cursor-pointer hover:text-blueViolet tooltip"
+            className="mx-3 cursor-pointer text-blueViolet tooltip"
             data-tip="Edit"
           >
             <FontAwesomeIcon icon={faEye} />
@@ -32,14 +32,14 @@ const MyToy = ({
           <label
             onClick={() => handleUpdateMyToys(_id)}
             htmlFor="toyedit"
-            className="mx-3 cursor-pointer hover:text-amber-500 tooltip"
+            className="mx-3 cursor-pointer text-amber-500 tooltip"
             data-tip="Edit"
           >
             <FontAwesomeIcon icon={faEdit} />
           </label>
           <button
             onClick={() => handleRemove(_id)}
-            className="mx-3 cursor-pointer hover:text-red-500 tooltip"
+            className="mx-3 cursor-pointer text-red-500 tooltip"
             data-tip="Remove"
           >
             <FontAwesomeIcon icon={faTrashAlt} />

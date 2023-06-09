@@ -2,53 +2,20 @@ import moment from "moment/moment";
 import { useContext, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { AuthContext } from "../../provider/AuthProvider";
-import UseTitle from "../../hooks/useTitle";
+import useTitle from "../../hooks/useTitle";
+import { DataContext } from "../../provider/DataProvider";
 
 const AddToy = () => {
   const { user } = useContext(AuthContext);
-  UseTitle("Add Toy");
+  const { category } = useContext(DataContext);
+  useTitle("Add Toy");
   const create = moment().format("DD/MM/YYYY, HH:mm:ss");
   const rating = () => parseFloat(Math.random() * 5).toFixed(2);
   const [selectCategory, setSelectCategory] = useState("");
   const [subCategory, setSubCategory] = useState([]);
 
-  const category = [
-    {
-      name: "Iron Man Toys",
-      sub: [
-        { name: "Iron Man 1 Toys" },
-        { name: "Iron Man 2 Toys" },
-        { name: "Iron Man 3 Toys" },
-      ],
-    },
-    {
-      name: "Captain America Toys",
-      sub: [
-        { name: "The First Avenger Toys" },
-        { name: "The Winter Soldier Toys" },
-        { name: "Civil War Toys" },
-      ],
-    },
-    {
-      name: "Spiderman Toys",
-      sub: [
-        { name: "Across the Spider-Verse Toys" },
-        { name: "No Way Home Toys" },
-        { name: "Homecoming Toys" },
-      ],
-    },
-    {
-      name: "Hulk Toys",
-      sub: [
-        { name: "The Incredible Hulk Toys" },
-        { name: "Age of Ultron Toys" },
-        { name: "Endgame  Toys" },
-      ],
-    },
-  ];
-
   useEffect(() => {
-    setSubCategory(category.find((e) => e.name === selectCategory)?.sub || []);
+    setSubCategory(category?.find((e) => e.name === selectCategory)?.sub || []);
   }, [selectCategory]);
 
   const handleAddToyForm = (e) => {
@@ -100,12 +67,12 @@ const AddToy = () => {
   };
 
   return (
-    <div className="px-2 lg:px-0 max-w-8xl mx-auto my-32">
+    <div className="px-2 lg:px-0 max-w-8xl mx-auto my-10">
+      <h1 className="text-center text-xl mb-5 uppercase bg-blueViolet py-10 text-white rounded-lg">
+        Please add your toys
+      </h1>
       <div className="w-10/12 mx-auto bg-base-100 rounded-lg p-5">
         <form onSubmit={handleAddToyForm}>
-          <h1 className="text-center text-xl my-3 uppercase">
-            Please add a toy
-          </h1>
           <div className="flex justify-between">
             <input
               type="text"
@@ -175,7 +142,7 @@ const AddToy = () => {
               <option defaultValue={null} selected disabled>
                 -- --
               </option>
-              {category.map((e, index) => (
+              {category?.map((e, index) => (
                 <option value={e.name} key={index}>
                   {e.name}
                 </option>
@@ -190,7 +157,7 @@ const AddToy = () => {
               <option defaultValue={null} selected disabled>
                 -- --
               </option>
-              {subCategory.map((e, index) => (
+              {subCategory?.map((e, index) => (
                 <option value={e.name} key={index}>
                   {e.name}
                 </option>

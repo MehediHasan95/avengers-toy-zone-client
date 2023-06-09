@@ -8,11 +8,14 @@ AOS.init();
 import "react-tabs/style/react-tabs.css";
 import "@smastrom/react-rating/style.css";
 import AuthProvider from "./provider/AuthProvider.jsx";
+import DataProvider from "./provider/DataProvider.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AuthProvider>
-      <App />
+      <DataProvider>
+        <App />
+      </DataProvider>
     </AuthProvider>
   </React.StrictMode>
 );

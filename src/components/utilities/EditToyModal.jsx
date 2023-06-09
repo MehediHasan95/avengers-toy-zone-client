@@ -33,7 +33,7 @@ const EditToyModal = ({ viewToys, setViewToys }) => {
     <>
       <input type="checkbox" id="toyedit" className="modal-toggle" />
       <div className="modal">
-        <div method="dialog" className="modal-box w-2/5 max-w-5xl">
+        <div method="dialog" className="modal-box w-11/12 lg:w-2/5 max-w-5xl">
           <label
             onClick={() => setViewToys({})}
             htmlFor="toyedit"
@@ -41,7 +41,9 @@ const EditToyModal = ({ viewToys, setViewToys }) => {
           >
             <FontAwesomeIcon icon={faXmark} />
           </label>
-          <h3 className="text-center text-2xl">Please Edit Toy Information</h3>
+          <span className="text-center text-xl uppercase border-dashed border-2 border-blueViolet rounded-lg px-3 py-1">
+            Update Your Toy Information
+          </span>
           <div className="py-4">
             <form onSubmit={handleUpdateToyInformation} className="text-left">
               <label>
@@ -111,8 +113,8 @@ const EditToyModal = ({ viewToys, setViewToys }) => {
                   required
                 />
               </label>
-              <button className="w-full p-3 rounded-lg bg-blueViolet text-white">
-                Update Your Toy
+              <button className="w-full p-3 uppercase rounded-lg bg-blueViolet text-white">
+                Update Now
               </button>
             </form>
           </div>

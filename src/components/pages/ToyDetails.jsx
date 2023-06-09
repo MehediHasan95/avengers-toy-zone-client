@@ -1,5 +1,6 @@
 import { Rating } from "@smastrom/react-rating";
 import { useLoaderData } from "react-router-dom";
+import useTitle from "../../hooks/useTitle";
 
 const ToyDetails = () => {
   const toyDetails = useLoaderData();
@@ -17,6 +18,8 @@ const ToyDetails = () => {
     rating,
     brand,
   } = toyDetails;
+
+  useTitle(name);
 
   return (
     <div className="px-2 lg:px-0 max-w-8xl mx-auto my-10">

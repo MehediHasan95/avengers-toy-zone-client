@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Iron Man Toys",
+    "sub": [
+      { "name": "Iron Man 1 Toys" },
+      { "name": "Iron Man 2 Toys" },
+      { "name": "Iron Man 3 Toys" }
+    ]
+  },
+  {
+    "name": "Captain America Toys",
+    "sub": [
+      { "name": "The First Avenger Toys" },
+      { "name": "The Winter Soldier Toys" },
+      { "name": "Civil War Toys" }
+    ]
+  },
+  {
+    "name": "Spiderman Toys",
+    "sub": [
+      { "name": "Across the Spider-Verse Toys" },
+      { "name": "No Way Home Toys" },
+      { "name": "Homecoming Toys" }
+    ]
+  },
+  {
+    "name": "Hulk Toys",
+    "sub": [
+      { "name": "The Incredible Hulk Toys" },
+      { "name": "Age of Ultron Toys" },
+      { "name": "Endgame  Toys" }
+    ]
+  }
+]

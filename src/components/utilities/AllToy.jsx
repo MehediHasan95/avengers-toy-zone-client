@@ -5,7 +5,7 @@ const AllToy = ({ toy }) => {
 
   return (
     <tbody>
-      <tr>
+      <tr className="hover:bg-[#f1e9fc] cursor-pointer">
         <td>{sellerName}</td>
         <td>{name}</td>
         <td>{subCategory}</td>

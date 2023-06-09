@@ -2,12 +2,12 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
 import notdata from "../../assets/nodata.svg";
 import MyToy from "../utilities/MyToy";
-import UseTitle from "../../hooks/useTitle";
+import useTitle from "../../hooks/useTitle";
 import swal from "sweetalert";
 
 const MyToys = () => {
   const { user } = useContext(AuthContext);
-  UseTitle("My Toys");
+  useTitle("My Toys");
   const [myToys, setMyToys] = useState([]);
   const [viewToys, setViewToys] = useState({});
 
@@ -15,7 +15,7 @@ const MyToys = () => {
     fetch(`http://localhost:5000/mytoys?uid=${user?.uid}`)
       .then((res) => res.json())
       .then((res) => setMyToys(res));
-  }, [user?.uid]);
+  }, [user?.uid, viewToys]);
 
   const handleRemove = (_id) => {
     swal({
@@ -51,8 +51,11 @@ const MyToys = () => {
 
   return (
     <div className="px-2 lg:px-0 max-w-8xl mx-auto my-10">
+      <h1 className="text-center text-xl mb-5 uppercase bg-blueViolet py-10 text-white rounded-lg">
+        My Toys List
+      </h1>
       {myToys.length > 0 ? (
-        <table className="w-full table rounded-none text-center bg-base-100">
+        <table className="w-full table table-xs lg:table-md rounded-none text-center bg-base-100">
           <thead className="bg-blueViolet text-white">
             <tr>
               <th>Seller Name</th>
@@ -77,7 +80,7 @@ const MyToys = () => {
       ) : (
         <div>
           <img src={notdata} alt="no_data_found" className="w-3/6 mx-auto" />
-          <p className="text-center">No Data Found</p>
+          <p className="text-center">No information was found for you</p>
         </div>
       )}
     </div>
