@@ -9,7 +9,7 @@ const Newsletter = () => {
         </h1>
         <p>TO be updated with all the latest trends and products</p>
       </div>
-      <div className="text-center my-5">
+      <div className="text-center my-8">
         <input
           type="text"
           className="border-none outline-none p-3 rounded-l-lg"

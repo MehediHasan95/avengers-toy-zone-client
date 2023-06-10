@@ -22,6 +22,9 @@ export default {
         blueViolet: "#8843E4",
         russianViolet: "#32184B",
       },
+      backgroundImage: {
+        deal: "url('./src/assets/deals.jpg')",
+      },
       maxWidth: {
         "8xl": "85rem",
       },

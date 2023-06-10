@@ -64,11 +64,11 @@ const Category = () => {
                   <TabPanel key={index}>
                     <>
                       {dataLoadByCategory.length > 0 ? (
-                        <div className="flex justify-center">
+                        <div className="flex justify-center flex-col lg:flex-row">
                           {dataLoadByCategory.map((e) => (
                             <div
                               key={e._id}
-                              className="bg-base-100 w-96 p-3 mx-3 rounded-lg"
+                              className="bg-base-100 w-96 p-3 mx-auto lg:mx-3 mb-3 lg:mb-0 rounded-lg"
                             >
                               <div className="h-96 overflow-hidden rounded-lg">
                                 <img
