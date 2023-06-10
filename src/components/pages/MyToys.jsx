@@ -6,27 +6,47 @@ import useTitle from "../../hooks/useTitle";
 import swal from "sweetalert";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { toast } from "react-hot-toast";
 
 const MyToys = () => {
-  const { user } = useContext(AuthContext);
+  const { user, userSignOut } = useContext(AuthContext);
   useTitle("My Toys");
   const [myToys, setMyToys] = useState([]);
   const [viewToys, setViewToys] = useState({});
   const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
-    fetch(`http://localhost:5000/mytoys?uid=${user?.uid}`)
+    fetch(`http://localhost:5000/mytoys?uid=${user?.uid}`, {
+      headers: {
+        authorization: localStorage.getItem("access-token"),
+      },
+    })
       .then((res) => res.json())
+
       .then((res) => {
-        let results = [];
-        for (const elements of res) {
-          if (elements.name.toLowerCase().includes(searchText.toLowerCase())) {
-            results.push(elements);
+        if (!res.err) {
+          let results = [];
+          for (const elements of res) {
+            if (
+              elements.name.toLowerCase().includes(searchText.toLowerCase())
+            ) {
+              results.push(elements);
+            }
           }
+          setMyToys(results);
+        } else {
+          swal("Your session has expire").then((value) => {
+            if (value) {
+              userSignOut()
+                .then(() => {
+                  localStorage.removeItem("access-token");
+                })
+                .catch((err) => toast.error(err.code));
+            }
+          });
         }
-        setMyToys(results);
       });
-  }, [searchText, user?.uid, viewToys]);
+  }, [searchText, user?.uid, userSignOut, viewToys]);
 
   const handleRemove = (_id) => {
     swal({
