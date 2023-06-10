@@ -47,13 +47,16 @@ const AddToy = () => {
       description,
     };
 
-    fetch("http://localhost:5000/alltoys", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
+    fetch(
+      "https://b7a11-toy-marketplace-server-side-mehedi-hasan95.vercel.app/alltoys",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    )
       .then((res) => res.json())
       .then((res) => {
         console.log(res);

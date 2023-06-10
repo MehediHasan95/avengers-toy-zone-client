@@ -1,4 +1,7 @@
+import useTitle from "../../hooks/useTitle";
+
 const Blog = () => {
+  useTitle("Blog");
   const data = [
     {
       question:

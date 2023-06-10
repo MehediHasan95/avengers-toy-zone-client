@@ -16,11 +16,14 @@ const MyToys = () => {
   const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
-    fetch(`http://localhost:5000/mytoys?uid=${user?.uid}`, {
-      headers: {
-        authorization: localStorage.getItem("access-token"),
-      },
-    })
+    fetch(
+      `https://b7a11-toy-marketplace-server-side-mehedi-hasan95.vercel.app/mytoys?uid=${user?.uid}`,
+      {
+        headers: {
+          authorization: localStorage.getItem("access-token"),
+        },
+      }
+    )
       .then((res) => res.json())
 
       .then((res) => {
@@ -56,9 +59,12 @@ const MyToys = () => {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        fetch(`http://localhost:5000/mytoys/${_id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://b7a11-toy-marketplace-server-side-mehedi-hasan95.vercel.app/mytoys/${_id}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((res) => {
             if (res.acknowledged) {
@@ -73,7 +79,9 @@ const MyToys = () => {
   };
 
   const handleUpdateMyToys = (_id) => {
-    fetch(`http://localhost:5000/mytoys/${_id}`)
+    fetch(
+      `https://b7a11-toy-marketplace-server-side-mehedi-hasan95.vercel.app/mytoys/${_id}`
+    )
       .then((res) => res.json())
       .then((res) => {
         setViewToys(res);

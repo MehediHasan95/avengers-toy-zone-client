@@ -14,13 +14,16 @@ const EditToyModal = ({ viewToys, setViewToys }) => {
     const description = e?.target?.description?.value;
     const date = { name, price, quantity, img, description };
 
-    fetch(`http://localhost:5000/mytoys/${_id}`, {
-      method: "PATCH",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(date),
-    })
+    fetch(
+      `https://b7a11-toy-marketplace-server-side-mehedi-hasan95.vercel.app/mytoys/${_id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(date),
+      }
+    )
       .then((res) => res.json())
       .then((res) => {
         if (res.acknowledged) {

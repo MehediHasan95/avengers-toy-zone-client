@@ -1,6 +1,9 @@
 import aboutImg from "../../assets/about.png";
+import useTitle from "../../hooks/useTitle";
 
 const About = () => {
+  useTitle("About");
+
   return (
     <div className="min-h-[70vh] px-2 lg:px-0 max-w-8xl mx-auto my-10 grid place-items-center">
       <div className="flex gap-10">

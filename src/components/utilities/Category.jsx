@@ -15,7 +15,9 @@ const Category = () => {
     if (category.length > 0) {
       const data = category[mainIndex]?.sub;
       const name = data[subIndex].name;
-      fetch(`http://localhost:5000/alltoys/${name}`)
+      fetch(
+        `https://b7a11-toy-marketplace-server-side-mehedi-hasan95.vercel.app/alltoys/${name}`
+      )
         .then((res) => res.json())
         .then((res) => setDataLoadByCategory(res));
     }

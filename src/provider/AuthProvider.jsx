@@ -19,13 +19,16 @@ const AuthProvider = ({ children }) => {
     const unSubscribe = onAuthStateChanged(auth, (results) => {
       setUser(results);
       setLoading(false);
-      fetch("http://localhost:5000/jwt", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({ uid: results?.uid }),
-      })
+      fetch(
+        "https://b7a11-toy-marketplace-server-side-mehedi-hasan95.vercel.app/jwt",
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({ uid: results?.uid }),
+        }
+      )
         .then((res) => res.json())
         .then((res) => {
           localStorage.setItem("access-token", res.token);

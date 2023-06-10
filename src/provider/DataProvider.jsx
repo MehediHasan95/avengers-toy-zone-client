@@ -7,7 +7,9 @@ const DataProvider = ({ children }) => {
   const [category, setCategory] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/alltoys")
+    fetch(
+      "https://b7a11-toy-marketplace-server-side-mehedi-hasan95.vercel.app/alltoys"
+    )
       .then((res) => res.json())
       .then((res) => setAllToys(res));
   }, []);
