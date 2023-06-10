@@ -62,7 +62,6 @@ const AddToy = () => {
         console.log(res);
         if (res.acknowledged) {
           toast.success("Your toy add successful");
-          setSubCategory([]);
           e.target.reset();
         }
       })

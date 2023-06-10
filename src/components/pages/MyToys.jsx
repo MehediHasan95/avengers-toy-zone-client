@@ -5,7 +5,7 @@ import MyToy from "../utilities/MyToy";
 import useTitle from "../../hooks/useTitle";
 import swal from "sweetalert";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faFilter, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { toast } from "react-hot-toast";
 
 const MyToys = () => {
@@ -14,6 +14,9 @@ const MyToys = () => {
   const [myToys, setMyToys] = useState([]);
   const [viewToys, setViewToys] = useState({});
   const [searchText, setSearchText] = useState("");
+  const [sortByPrice, setSortByPrice] = useState("");
+  const [sortResults, setSortResutls] = useState(null);
+  console.log(sortResults);
 
   useEffect(() => {
     fetch(
@@ -25,7 +28,6 @@ const MyToys = () => {
       }
     )
       .then((res) => res.json())
-
       .then((res) => {
         if (!res.err) {
           let results = [];
@@ -88,23 +90,52 @@ const MyToys = () => {
       });
   };
 
+  const handleSortData = () => {
+    if (sortByPrice) {
+      fetch(
+        `https://b7a11-toy-marketplace-server-side-mehedi-hasan95.vercel.app/sort?uid=${user.uid}&sort=${sortByPrice}`
+      )
+        .then((res) => res.json())
+        .then((data) => setSortResutls(data));
+    }
+  };
+
   return (
     <div className="px-2 lg:px-0 max-w-8xl mx-auto my-10">
       <h1 className="text-center text-xl mb-5 uppercase bg-blueViolet py-10 text-white rounded-lg">
         My Toys List
       </h1>
-      <div className="w-full my-5 relative">
-        <input
-          onKeyUp={(e) => setSearchText(e.target.value)}
-          type="text"
-          className="w-full py-2 ps-9 rounded-full border-none outline-none text-blueViolet"
-          placeholder="Search"
-        />
-        <FontAwesomeIcon
-          icon={faSearch}
-          className="text-blueViolet absolute top-3 left-4 text-sm cursor-pointer"
-        />
+
+      <div className="flex justify-between my-5">
+        <div className="w-3/4 relative">
+          <input
+            onKeyUp={(e) => setSearchText(e.target.value)}
+            type="text"
+            className="w-full py-2 ps-9 rounded-full border-none outline-none text-blueViolet"
+            placeholder="Search"
+          />
+          <FontAwesomeIcon
+            icon={faSearch}
+            className="text-blueViolet absolute top-3 left-4 text-sm cursor-pointer"
+          />
+        </div>
+
+        <div>
+          <FontAwesomeIcon icon={faFilter} className="mx-2 text-blueViolet" />
+          <select
+            onChange={(e) => setSortByPrice(e.target.value)}
+            onClick={handleSortData}
+            className="rounded-lg p-2 text-xs border-none outline-none"
+          >
+            <option defaultValue={null} selected disabled>
+              Filter
+            </option>
+            <option value="-1">HIGH TO LOW</option>
+            <option value="1">LOW TO HIGH</option>
+          </select>
+        </div>
       </div>
+
       {myToys.length > 0 ? (
         <table className="w-full table table-xs lg:table-md rounded-none text-center bg-base-100">
           <thead className="bg-blueViolet text-white">
@@ -118,7 +149,7 @@ const MyToys = () => {
               <th>Action</th>
             </tr>
           </thead>
-          {myToys.map((e, index) => (
+          {(sortResults ? sortResults : myToys).map((e, index) => (
             <MyToy
               key={e._id}
               toy={e}

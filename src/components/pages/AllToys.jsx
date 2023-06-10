@@ -27,6 +27,7 @@ const AllToys = () => {
       <h1 className="text-center text-xl uppercase bg-blueViolet py-10 text-white rounded-lg">
         All Seller Toys List
       </h1>
+
       <div className="w-full my-5 relative">
         <input
           onKeyUp={(e) => setSearchText(e.target.value)}
@@ -39,6 +40,7 @@ const AllToys = () => {
           className="text-blueViolet absolute top-3 left-4 text-sm cursor-pointer"
         />
       </div>
+
       {searchResults.length > 0 ? (
         <table className="w-full table table-xs lg:table-md rounded-none text-center bg-base-100">
           <thead className="bg-blueViolet text-white">
