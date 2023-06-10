@@ -31,12 +31,12 @@ const AllToys = () => {
         <input
           onKeyUp={(e) => setSearchText(e.target.value)}
           type="text"
-          className="w-full p-2 rounded-lg border-none outline-none"
-          placeholder="Search you toy"
+          className="w-full py-2 ps-9 rounded-full border-none outline-none text-blueViolet"
+          placeholder="Search"
         />
         <FontAwesomeIcon
           icon={faSearch}
-          className="text-blueViolet absolute top-3 right-2 cursor-pointer"
+          className="text-blueViolet absolute top-3 left-4 text-sm cursor-pointer"
         />
       </div>
       {searchResults.length > 0 ? (

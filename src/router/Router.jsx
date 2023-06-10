@@ -8,6 +8,8 @@ import PrivateRouter from "./PrivateRouter";
 import ErrorPage from "../components/shared/ErrorPage";
 import ToyDetails from "../components/pages/ToyDetails";
 import MyToys from "../components/pages/MyToys";
+import Blog from "../components/pages/Blog";
+import About from "../components/pages/About";
 
 const router = createBrowserRouter([
   {
@@ -47,6 +49,14 @@ const router = createBrowserRouter([
             <MyToys />
           </PrivateRouter>
         ),
+      },
+      {
+        path: "blog",
+        element: <Blog />,
+      },
+      {
+        path: "about",
+        element: <About />,
       },
       {
         path: "authentication",

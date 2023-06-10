@@ -22,7 +22,7 @@ const Category = () => {
   }, [category, mainIndex, subIndex]);
 
   return (
-    <div className="my-20">
+    <div className="px-2 lg:px-0 max-w-8xl mx-auto my-32">
       <h1 className="text-center text-5xl font-bold my-20">
         Toy By <span className="text-blueViolet">Category</span>
       </h1>
@@ -31,11 +31,12 @@ const Category = () => {
           selectedIndex={mainIndex}
           onSelect={(index) => setMainIndex(index)}
         >
-          <TabList className="flex justify-evenly mb-5">
+          <TabList className="flex justify-center">
             {category.map((e, index) => (
               <Tab
                 key={index}
-                className="w-full text-center p-3 cursor-pointer"
+                className="px-5 cursor-pointer border-x-2 border-blueViolet"
+                selectedClassName="text-blueViolet font-bold outline-none"
               >
                 {e.name}
               </Tab>
@@ -48,9 +49,13 @@ const Category = () => {
                 selectedIndex={subIndex}
                 onSelect={(index) => setSubIndex(index)}
               >
-                <TabList className="flex justify-center mb-5">
+                <TabList className="flex justify-center">
                   {e.sub.map((e, index) => (
-                    <Tab className="text-center p-3 cursor-pointer" key={index}>
+                    <Tab
+                      key={index}
+                      className="my-10 px-5 cursor-pointer  border-none"
+                      selectedClassName="text-blueViolet font-bold outline-none"
+                    >
                       {e.name}
                     </Tab>
                   ))}

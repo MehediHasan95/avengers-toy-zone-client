@@ -19,7 +19,7 @@ const Gallery = () => {
   ];
 
   return (
-    <div>
+    <div className="px-2 lg:px-0 max-w-8xl mx-auto my-32">
       <h1 className="text-center text-5xl font-bold my-20">
         OUR <span className="text-blueViolet">HEROS</span>
       </h1>

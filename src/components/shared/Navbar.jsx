@@ -86,17 +86,9 @@ const Navbar = () => {
               </li>
 
               <li>
-                <NavLink to="/blog">
+                <NavLink to="/about">
                   {({ isActive }) => (
                     <p className={isActive ? active : inActive}>About</p>
-                  )}
-                </NavLink>
-              </li>
-
-              <li>
-                <NavLink to="/blog">
-                  {({ isActive }) => (
-                    <p className={isActive ? active : inActive}>Contact</p>
                   )}
                 </NavLink>
               </li>
@@ -155,7 +147,7 @@ const Navbar = () => {
             </li>
 
             <li>
-              <NavLink to="/blog">
+              <NavLink to="/about">
                 {({ isActive }) => (
                   <p className={isActive ? active : inActive}>About</p>
                 )}
@@ -167,7 +159,7 @@ const Navbar = () => {
           {user ? (
             <div className="flex items-center">
               <div
-                className="avatar pe-5 tooltip tooltip-bottom tooltip-primary"
+                className="avatar px-5 tooltip tooltip-bottom tooltip-primary"
                 data-tip={user && user?.displayName}
               >
                 <div className="w-10 rounded-full">
