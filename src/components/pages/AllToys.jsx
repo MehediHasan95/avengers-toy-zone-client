@@ -7,10 +7,19 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import searchNotFound from "../../assets/searchNotFound.svg";
 
 const AllToys = () => {
-  const { allToys } = useContext(DataContext);
+  const { count, allToys, currentPage, setCurrentPage, limit, setLimit } =
+    useContext(DataContext);
   const [searchResults, setSearchResults] = useState([]);
   const [searchText, setSearchText] = useState("");
   UseTitle("All Toys");
+  const [pageNumbers, setPageNumbers] = useState([]);
+
+  useEffect(() => {
+    const page = Math.ceil(count?.count / (parseInt(limit) || 5));
+    if (page) {
+      setPageNumbers([...Array(page).keys()]);
+    }
+  }, [count?.count, limit]);
 
   useEffect(() => {
     let results = [];
@@ -70,6 +79,30 @@ const AllToys = () => {
           </p>
         </div>
       )}
+      <div className="my-5 text-center">
+        {pageNumbers.map((number) => (
+          <button
+            key={number}
+            onClick={() => setCurrentPage(number)}
+            className={`w-12 h-12 border border-blueViolet ${
+              currentPage === number ? "bg-blueViolet text-white" : "bg-none"
+            } rounded-full mx-2 tooltip`}
+            data-tip={`Page ${number + 1}`}
+          >
+            {number + 1}
+          </button>
+        ))}
+        <select
+          onChange={(e) => setLimit(e.target.value)}
+          className="px-4 py-2 border-none outline-none rounded-lg"
+        >
+          <option value="5" selected>
+            5
+          </option>
+          <option value="10">10</option>
+          <option value="15">15</option>
+        </select>
+      </div>
     </div>
   );
 };

@@ -23,7 +23,7 @@ export default {
         russianViolet: "#32184B",
       },
       backgroundImage: {
-        deal: "url('./src/assets/deals.jpg')",
+        deal: "url('https://talenthouse-res.cloudinary.com/image/upload/c_limit,fl_progressive,h_4096,w_4096/v1559238877/user-999891/profile/nolntdjoyjdkpe9j4xtu.jpg')",
       },
       maxWidth: {
         "8xl": "85rem",
